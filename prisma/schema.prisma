@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique
+  password     String
+  applications Application[]
+  interviews   Interview[]
+}
+
+model Recruiter {
+  id       String    @id @default(uuid())
+  name     String
+  email    String    @unique
+  password String
+  jobPosts JobPost[]
+}
+
+model JobPost {
+  id             String        @id @default(uuid())
+  title          String
+  jobDescription String
+  applications   Application[]
+  interviews     Interview[]
+  recruiterId    String?
+  recruiter      Recruiter?    @relation(fields: [recruiterId], references: [id])
+}
+
+enum Status {
+  processing
+  rejected
+  shortlisted_for_interview
+  interview_scheduled
+  shortlisted
+}
+
+model Application {
+  id             String      @id @default(uuid())
+  userId         String
+  jobPostId      String
+  resumeUrl      String
+  resumeText     String?
+  screeningScore Int?
+  status         Status      @default(processing)
+  interviewed    Boolean     @default(false)
+  user           User        @relation(fields: [userId], references: [id])
+  jobPost        JobPost     @relation(fields: [jobPostId], references: [id])
+  interviews     Interview[]
+
+  @@unique([userId, jobPostId])
+}
+
+model Interview {
+  id                String      @id @default(uuid())
+  userId            String
+  applicationId     String
+  jobPostId         String
+  performanceReview String
+  performanceScore  Int
+  transcript        Json?
+  scores            Json?
+  user              User        @relation(fields: [userId], references: [id])
+  jobPost           JobPost     @relation(fields: [jobPostId], references: [id])
+  application       Application @relation(fields: [applicationId], references: [id])
+
+  @@unique([userId, applicationId, jobPostId])
+}
