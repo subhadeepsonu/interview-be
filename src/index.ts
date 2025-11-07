@@ -30,7 +30,7 @@ const swaggerOptions = {
                 url: "http://localhost:3000",
 
             }, {
-                url: "https://interview-be.onrender.com",
+                url: "https://interview-be.subhadeep.xyz",
             }
         ],
         components: {
