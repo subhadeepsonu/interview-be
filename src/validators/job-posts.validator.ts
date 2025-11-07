@@ -1,18 +1,18 @@
 import z from "zod"
 
-export const createJobApplicationSchema = z.object({
+export const createJobPostSchema = z.object({
     title: z.string(),
     jobDescription: z.string(),
     skills: z.array(z.string()),
     experience: z.number().positive(),
-    minScore: z.string()
+    minScore: z.number().positive()
 })
 
-export const updateJobApplicationSchema = z.object({
+export const updateJobPostSchema = z.object({
     title: z.string(),
     jobDescription: z.string(),
     skills: z.array(z.string()),
     experience: z.number().positive(),
-    minScore: z.string(),
+    minScore: z.number().positive(),
     open: z.boolean()
 })

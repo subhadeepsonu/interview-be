@@ -65,8 +65,8 @@ model Interview {
   userId            String
   applicationId     String
   jobPostId         String
-  performanceReview String
-  performanceScore  Int
+  performanceReview String?
+  performanceScore  Int?
   transcript        Json?
   user              User        @relation(fields: [userId], references: [id])
   jobPost           JobPost     @relation(fields: [jobPostId], references: [id])

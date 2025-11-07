@@ -1,6 +1,6 @@
 import z from "zod"
 
-export const createJobApplication = z.object({
+export const createJobApplicationSchema = z.object({
     jobPostId: z.string(),
     resumeText: z.string(),
 })
