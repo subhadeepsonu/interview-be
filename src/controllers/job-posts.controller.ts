@@ -29,14 +29,7 @@ export async function updateJobPost(req: Request, res: Response) {
         res.status(500).json({ message: "Internal Server Error" })
     }
 }
-export async function deleteJobPost(req: Request, res: Response) {
-    try {
 
-    }
-    catch (error) {
-        res.status(500).json({ message: "Internal Server Error" })
-    }
-}
 export async function getMyJobPosts(req: Request, res: Response) {
     try {
 

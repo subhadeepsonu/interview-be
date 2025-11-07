@@ -29,7 +29,7 @@ model JobPost {
   title          String
   jobDescription String
   skills         String[]
-  expirence      Int
+  experience     Int
   minScore       Int
   applications   Application[]
   interviews     Interview[]
@@ -49,9 +49,8 @@ model Application {
   id             String      @id @default(uuid())
   userId         String
   jobPostId      String
-  resumeUrl      String
-  resumeText     String?
-  screeningScore Int?
+  resumeText     String
+  screeningScore Int
   status         Status      @default(Applied)
   interviewed    Boolean     @default(false)
   user           User        @relation(fields: [userId], references: [id])
