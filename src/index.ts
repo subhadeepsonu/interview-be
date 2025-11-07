@@ -48,11 +48,11 @@ const swaggerOptions = {
     apis: ["./src/routes/*.ts"],
 };
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
-app.use("/api/v1/users", userRouter)
-app.use("/api/v1/application", applicationRouter)
-app.use("/api/v1/job-posts", jobPostsRouter)
-app.use("/api/v1/interview", interviewRouter)
-app.use("/api/v1/recruiter", recruiterRouter)
+app.use("/user", userRouter)
+app.use("/application", applicationRouter)
+app.use("/jobs", jobPostsRouter)
+app.use("/interview", interviewRouter)
+app.use("/recruiter", recruiterRouter)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(port, () => {
