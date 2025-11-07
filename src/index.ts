@@ -28,7 +28,9 @@ const swaggerOptions = {
         servers: [
             {
                 url: "http://localhost:3000",
-                url2: "https://interview-be.subhadeep.xyz"
+
+            }, {
+                url: "https://interview-be.onrender.com",
             }
         ],
         components: {
