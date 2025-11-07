@@ -28,17 +28,20 @@ model JobPost {
   id             String        @id @default(uuid())
   title          String
   jobDescription String
+  skills         String[]
+  expirence      Int
+  minScore       Int
   applications   Application[]
   interviews     Interview[]
-  recruiterId    String?
-  recruiter      Recruiter?    @relation(fields: [recruiterId], references: [id])
+  open           Boolean       @default(true)
+  recruiterId    String
+  recruiter      Recruiter     @relation(fields: [recruiterId], references: [id])
 }
 
 enum Status {
-  processing
+  Applied
   rejected
   shortlisted_for_interview
-  interview_scheduled
   shortlisted
 }
 
@@ -49,7 +52,7 @@ model Application {
   resumeUrl      String
   resumeText     String?
   screeningScore Int?
-  status         Status      @default(processing)
+  status         Status      @default(Applied)
   interviewed    Boolean     @default(false)
   user           User        @relation(fields: [userId], references: [id])
   jobPost        JobPost     @relation(fields: [jobPostId], references: [id])
@@ -66,7 +69,6 @@ model Interview {
   performanceReview String
   performanceScore  Int
   transcript        Json?
-  scores            Json?
   user              User        @relation(fields: [userId], references: [id])
   jobPost           JobPost     @relation(fields: [jobPostId], references: [id])
   application       Application @relation(fields: [applicationId], references: [id])

@@ -5,7 +5,7 @@ import { userMiddleware } from "../middleware/user.middleware";
 
 export const interviewRouter = Router()
 
-interviewRouter.get("/:id", recruiterMiddleware, getInterviewById)
-interviewRouter.get("/me", userMiddleware, getMyInterviews)
+interviewRouter.get("/recruiter/:id", recruiterMiddleware, getInterviewById)
+interviewRouter.get("/user/:id", userMiddleware, getMyInterviews)
 interviewRouter.post("/", createInterview)
 interviewRouter.put("/:id", updateInterview)
