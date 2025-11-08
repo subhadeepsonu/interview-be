@@ -113,6 +113,7 @@ export async function GetDashboardRecruiter(req: Request, res: Response) {
                 }
             }
         })
+        
         res.status(200).json({ applications: applications, jobPostsCount: jobPosts.length })
         return;
     } catch (error) {
