@@ -88,8 +88,9 @@ export async function GetMeRecruiter(req: Request, res: Response) {
             res.status(404).json({ message: "Recruiter not found" })
             return;
         }
-        res.status(200).json({ recruiter })
+        res.status(200).json({ data: recruiter })
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: "Internal Server Error" })
     }
 }

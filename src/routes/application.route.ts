@@ -70,7 +70,6 @@ export const applicationRouter = Router()
  *       404:
  *         description: Application not found
  */
-
+applicationRouter.get("/me", userMiddleware, getMyApplications)
 applicationRouter.get("/:id", recruiterMiddleware, getApplicationById)
-applicationRouter.get("me", userMiddleware, getMyApplications)
 applicationRouter.post("/", userMiddleware, createApplication)

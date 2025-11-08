@@ -57,7 +57,21 @@ export async function getJobPostById(req: Request, res: Response) {
 }
 export async function getAllJobPosts(req: Request, res: Response) {
     try {
-        const jobs = await prisma.jobPost.findMany()
+        const userId = req.body.userId
+        const jobs = await prisma.jobPost.findMany({
+            where: {
+                applications: {
+                    none: {
+                        userId: userId
+                    }
+                }
+            },
+
+            include: {
+                recruiter: true
+            }
+
+        })
         res.status(200).json({ data: jobs })
         return
 
@@ -103,6 +117,13 @@ export async function getMyJobPosts(req: Request, res: Response) {
         const jobs = await prisma.jobPost.findMany({
             where: {
                 recruiterId: recruiterId
+            },
+            include: {
+                _count: {
+                    select: {
+                        applications: true
+                    }
+                }
             }
         })
         res.status(200).json({ data: jobs })

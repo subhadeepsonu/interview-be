@@ -51,6 +51,7 @@ model Application {
   jobPostId      String
   resumeText     String
   screeningScore Int
+  feedback       String
   status         Status      @default(Applied)
   interviewed    Boolean     @default(false)
   user           User        @relation(fields: [userId], references: [id])

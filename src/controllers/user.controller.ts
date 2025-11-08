@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 export async function getUserProfile(req: Request, res: Response) {
     try {
         const userId = req.body.userId;
+        console.log("Fetching profile for userId:", userId);
         const user = await prisma.user.findUnique({
             where: {
                 id: userId
@@ -25,11 +26,12 @@ export async function getUserProfile(req: Request, res: Response) {
         }
         res.status(StatusCodes.OK).json({
             message: "User profile fetched successfully",
-            user: user
+            data: user
         });
         return;
 
     } catch (error) {
+        console.error("Error fetching user profile:", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             message: "Internal server error",
             error: error instanceof Error ? error.message : "Unknown error"
