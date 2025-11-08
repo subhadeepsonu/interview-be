@@ -73,5 +73,6 @@ export const recruiterRouter = Router()
  */
 
 recruiterRouter.get("/me", recruiterMiddleware, GetMeRecruiter)
+recruiterRouter.get("/dashboard", recruiterMiddleware, GetMeRecruiter)
 recruiterRouter.post("/login", LoginRecruiter)
 recruiterRouter.post("/register", RegisterRecruiter)

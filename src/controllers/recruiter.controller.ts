@@ -94,3 +94,29 @@ export async function GetMeRecruiter(req: Request, res: Response) {
         res.status(500).json({ message: "Internal Server Error" })
     }
 }
+
+export async function GetDashboardRecruiter(req: Request, res: Response) {
+    try {
+        const recruiterId = req.body.recruiterId;
+        const jobPosts = await prisma.application.findMany({
+            where: {
+                jobPost: {
+                    recruiterId: recruiterId
+                }
+            },
+
+        });
+        const applications = await prisma.application.findMany({
+            where: {
+                jobPost: {
+                    recruiterId: recruiterId
+                }
+            }
+        })
+        res.status(200).json({ applications: applications, jobPostsCount: jobPosts.length })
+        return;
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error" })
+        return;
+    }
+}
