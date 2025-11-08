@@ -101,8 +101,8 @@ export async function loginUser(req: Request, res: Response) {
             }
         });
         if (!user) {
-            res.status(StatusCodes.OK).json({
-                message: "User  in successfully",
+            res.status(StatusCodes.NOT_FOUND).json({
+                message: "User not found",
                 user: user
             })
             return
