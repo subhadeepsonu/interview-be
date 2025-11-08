@@ -64,7 +64,7 @@ export async function LoginRecruiter(req: Request, res: Response) {
             res.status(401).json({ message: "Invalid credentials" })
             return;
         }
-        const token = await jwt.sign({ id: recruiter.id }, process.env.JWT_SECRET as string);
+        const token = await jwt.sign({ recruiterId: recruiter.id }, process.env.JWT_SECRET as string);
         res.status(200).json({ message: "Recruiter logged in successfully", token })
     } catch (error) {
         res.status(500).json({ message: "Internal Server Error" })
